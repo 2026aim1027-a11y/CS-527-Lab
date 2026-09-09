@@ -1,0 +1,7 @@
+% No data file given -> only the first data page (logical addresses
+% 0-511) is mapped by default. Address 2000 falls on a page that was
+% never allocated, so this should fault - and ONLY this task, per the
+% Lab 4 fault-isolation design this lab still relies on.
+x1 = 200
+x2 = x1 * 10   % 2000
+x3 = [x2]

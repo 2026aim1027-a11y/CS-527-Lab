@@ -1,0 +1,3 @@
+tests/array_add.txt tests/array_add_data_full1.byte
+tests/array_add.txt tests/array_add_data_full2.byte
+exit

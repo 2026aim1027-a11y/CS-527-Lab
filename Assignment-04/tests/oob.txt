@@ -1,0 +1,5 @@
+% builds an out-of-range address (4200) at runtime via arithmetic,
+% since a literal >255 is rejected at compile time
+x1 = 200
+x1 = x1 * 21    % 4200, past the 4096-byte data memory
+x2 = [x1]

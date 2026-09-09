@@ -1,0 +1,7 @@
+tests/counter.txt
+tests/counter2.txt
+tests/counter.txt
+tests/counter2.txt
+tests/does_not_exist.txt
+tests/counter.txt
+exit

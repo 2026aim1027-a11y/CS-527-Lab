@@ -11,8 +11,7 @@ int opcode, dest, src1, src2;
 int flagZ, flagN, flagC, flagV;
 int end_of_simulation = 0;
 
-/* address of the instruction currently being executed (set by fetch,
- * used by execute() to compute branch targets) */
+
 static int current_instr_addr;
 
 void reset(void) {
@@ -34,11 +33,9 @@ void fetch(void) {
 }
 
 void decode(void) {
-    /* no-op at this stage, as specified */
+   
 }
 
-/* interpret a 0-255 byte field as an 8-bit two's-complement signed value,
- * used only for branch offsets (which can be negative) */
 static int as_signed_byte(int b) {
     return (b > 127) ? (b - 256) : b;
 }
@@ -213,14 +210,9 @@ void execute(void) {
             if (opcode >= OP_BRANCH_BASE && opcode <= (OP_BRANCH_BASE + 0xE)) {
                 int cond = opcode - OP_BRANCH_BASE;
                 if (branch_condition_met(cond)) {
-                    /* Verified against the handout's worked example: the
-                     * encoded offset is a signed instruction-count delta
-                     * (target_index - branch_index), not a byte delta, so
-                     * it must be scaled by 4 to become an address delta. */
                     int offset_instrs = as_signed_byte(src2);
                     PC = current_instr_addr + offset_instrs * 4;
                 }
-                /* else: PC already advanced past the branch by fetch() */
             } else {
                 fprintf(stderr, "Error: unknown opcode 0x%02X at PC=%d\n", opcode, current_instr_addr);
                 exit(1);

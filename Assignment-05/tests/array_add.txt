@@ -1,0 +1,25 @@
+% Vector array-add: Data[0..3]=N (multiple of 8), Data[4..4+4N)=A,
+% Data[4+4N..4+8N)=B, result written to Data[4+8N..4+12N).
+x1 = [0]          % N
+x2 = 4            % base of A
+x10 = x1 * 4      % 4*N (bytes per array)
+x3 = x2 + x10     % base of B = base_A + 4*N
+x4 = x3 + x10     % base of result = base_B + 4*N
+
+x5 = 0            % byte offset into arrays, 0..4N step 32 (8 words/iter)
+x6 = x1 * 4       % total bytes = 4*N
+
+.loop
+x15 = x5 - x6
+BGE .done
+x7 = x2 + x5
+x8 = x3 + x5
+x9 = x4 + x5
+v1 = [x7]
+v2 = [x8]
+v3 = v1 + v2
+[x9] = v3
+x5 = x5 + 32
+BAL .loop
+
+.done

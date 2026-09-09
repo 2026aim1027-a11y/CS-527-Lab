@@ -1,0 +1,3 @@
+tests/counter.txt
+tests/pagefault.txt
+exit

@@ -1,0 +1,13 @@
+% Counts from 0 to 4, printing each value, then halts.
+x1 = 0        % counter
+x2 = 5        % limit
+
+.loop
+x15 = x1 - x2
+BEQ .done
+print x1
+x1 = x1 + 1
+BAL .loop
+
+.done
+[0] = x1

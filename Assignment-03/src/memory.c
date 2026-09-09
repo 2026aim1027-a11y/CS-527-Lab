@@ -6,9 +6,6 @@
 unsigned char Instruction[INSTR_MEM_SIZE];
 unsigned char Data[DATA_MEM_SIZE];
 
-/* Reads a "N bytes, 4 hex bytes per line" file into buf (capacity cap).
- * Returns the number of bytes actually filled in.  Missing bytes are
- * left at whatever they already were (caller zero-initialises first). */
 static int load_hex_file(const char *path, unsigned char *buf, int cap) {
     FILE *fp = fopen(path, "r");
     if (!fp) {

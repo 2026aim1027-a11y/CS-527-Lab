@@ -3,18 +3,19 @@
 
 #define OP_HALT              0x00
 
+#define OP_PRINT             0x08
+
 #define OP_ADD_VAR           0x01
 #define OP_SUB_VAR           0x02
 #define OP_MUL_VAR           0x03
 #define OP_DIV_VAR           0x04
 #define OP_MEMREAD_VAR       0x05
 #define OP_MEMWRITE_VAR      0x06
-/* 0x07 unused: data-movement only ever has a constant source in the*/
 #define OP_ADD_CONST         0x09
 #define OP_SUB_CONST         0x0A
 #define OP_MUL_CONST         0x0B
 #define OP_DIV_CONST         0x0C
-#define OP_MEMREAD_CONST     0x0D  /* moved from the colliding 0x0C */
+#define OP_MEMREAD_CONST     0x0D  
 #define OP_MEMWRITE_CONST    0x0E
 #define OP_DATAMOVE_CONST    0x0F
 
@@ -35,7 +36,7 @@
 #define OP_VSUB_SCALARREG    0x32
 #define OP_VMUL_SCALARREG    0x33
 
-/* Branch condition codes */
+/* Branch condition codes (low nibble of a branch opcode) */
 #define BC_EQ 0x0
 #define BC_NE 0x1
 #define BC_CS 0x2
@@ -52,8 +53,10 @@
 #define BC_LE 0xD
 #define BC_AL 0xE
 
-#define VEC_LEN     8  
+#define VEC_LEN     8   
 #define NUM_INT_REG 256
 #define NUM_VEC_REG 32
+
+#define NUM_PROCESSORS 4
 
 #endif
