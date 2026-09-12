@@ -72,32 +72,10 @@ void mmu_release_all(int proc_id);
  * the offending task (see processor.h). */
 int get_physical_address(int proc_id, int isFetch, int address);
 
-/* Loads program_byte_file into freshly-allocated instruction frames and
- * (if non-NULL) data_byte_file into freshly-allocated data frames for
- * proc_id, allocating only as many pages as each file's actual content
- * needs (rounding up), per the handout's initialize(): "finds how many
- * PAGES are there in program.byte ... for every page, get a physical
- * page using getFreePage()". A data page covering logical addresses
- * 0-511 is always allocated even with no data file at all, so tasks
- * that never shipped one (every Lab 1-4 test program) can still safely
- * use a small amount of scratch data memory - see the README for the
- * reasoning. Calls load_error() (a recoverable, per-task failure - see
- * load_error.h), not exit(), if a file can't be read or physical
- * memory is exhausted, so one bad/oversized task can't take the whole
- * OS down. */
 void mem_initialize(int proc_id, const char *program_byte_file, const char *data_byte_file);
 
-/* Writes proc_id's full logical data image (0..4095, unmapped pages
- * read back as all-zero) out to data_byte_file in the usual "4 hex
- * bytes per line" format, then calls mmu_release_all(proc_id) to
- * return every frame it was using - the handout's "Write data.byte /
- * reset page table / Free pages from freePage array", in that order. */
 void mem_finalize(int proc_id, const char *data_byte_file);
 
-/* Byte/word accessors used by processor.c, all going through
- * get_physical_address() first. On a translation failure they report a
- * runtime fault for proc_id (halting only that task) and return a
- * harmless placeholder (0) rather than touching memory[] at all. */
 unsigned char mem_fetch_byte(int proc_id, int logical_addr);      /* isFetch=1 */
 int  mem_read_word(int proc_id, int address);                     /* isFetch=0 */
 void mem_write_word(int proc_id, int address, int value);         /* isFetch=0 */

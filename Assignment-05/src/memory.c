@@ -8,11 +8,18 @@
 char memory[MEMSIZE];
 unsigned char pageTable[MAX_PROC][NUM_LOGICAL_PAGES];
 unsigned char freePages[NUM_PHYSICAL_PAGES];
+// int ptbr[MAX_PROC]
 
 void mmu_init_global(void) {
     for (int f = 0; f < NUM_PHYSICAL_PAGES; f++) freePages[f] = 0;
     freePages[0] = 1; /* "Frame 0 is reserved, and will never be allocated" */
-    memset(pageTable, 0, sizeof(pageTable));
+    memset(pageTable, 0, sizeof(pageTable)); //NOt needed
+    // for (int p = 0; p < MAX_PROC; p++) {
+    //     int frame = PT_BASE_FRAME + p;
+    //     freePages[frame] = 1;       
+    //     ptbr[p] = frame;
+    //     memset(&memory[frame * PAGESIZE], 0, PAGESIZE); 
+    // }
     memset(memory, 0, sizeof(memory));
 }
 
@@ -27,10 +34,13 @@ int get_free_page(void) {
 }
 
 void mmu_release_all(int proc_id) {
+    // int pt_frame = ptbr[proc_id];
     for (int i = 0; i < NUM_LOGICAL_PAGES; i++) {
         unsigned char frame = pageTable[proc_id][i];
+        // unsigned char frame = (unsigned char)memory[pt_frame * PAGESIZE + i];
         if (frame != 0) {
             freePages[frame] = 0;
+            // memory[pt_frame * PAGESIZE + i] = 0;
             pageTable[proc_id][i] = 0;
         }
     }
@@ -46,6 +56,10 @@ int get_physical_address(int proc_id, int isFetch, int address) {
      * own numbers). */
     int page_index = address / PAGESIZE + (isFetch ? 0 : NUM_INSTR_PAGES);
     if (page_index < 0 || page_index >= NUM_LOGICAL_PAGES) return -1;
+
+    // int pt_entry_addr = ptbr[proc_id] * PAGESIZE + page_index;
+    // unsigned char frame = (unsigned char)memory[pt_entry_addr];
+
 
     unsigned char frame = pageTable[proc_id][page_index];
     if (frame == 0) return -1; /* never mapped - a page fault, not a bug */
@@ -102,6 +116,7 @@ static void map_and_load(int proc_id, int page_base, int max_pages,
                        proc_id);
         }
         pageTable[proc_id][page_base + i] = (unsigned char)frame;
+        // memory[ptbr[proc_id] * PAGESIZE + (page_base + i)] = (char)frame;
 
         int off = i * PAGESIZE;
         int n = content_len - off;
@@ -217,3 +232,4 @@ void mem_write_word(int proc_id, int address, int value) {
         memory[phys] = (char)b[k];
     }
 }
+
