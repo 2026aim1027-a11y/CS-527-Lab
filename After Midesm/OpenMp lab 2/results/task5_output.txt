@@ -1,0 +1,41 @@
+Task 5 - 2D Convolution (3x3 averaging filter)
+
+Handout example: input image (5 x 5)
+   10.00   20.00   30.00   40.00   50.00
+   60.00   70.00   80.00   90.00  100.00
+  110.00  120.00  130.00  140.00  150.00
+  160.00  170.00  180.00  190.00  200.00
+  210.00  220.00  230.00  240.00  250.00
+Output (3 x 3), parallel with 4 threads:
+   70.00   80.00   90.00
+  120.00  130.00  140.00
+  170.00  180.00  190.00
+Matches the hand-computed answer (70 80 90 / 120 130 140 / 170 180 190): yes
+Parallel == serial: yes
+
+N = 1024 (output 1022 x 1022, average of 381 calls)
+Serial: 5.459 ms
+Threads   rows (ms)  speedup  efficiency   collapse(2) (ms)  speedup  efficiency   Correct?
+      1       5.018     1.09        1.09              6.186     0.88        0.88   yes
+      2       3.667     1.49        0.74              4.026     1.36        0.68   yes
+      4       2.407     2.27        0.57              2.583     2.11        0.53   yes
+      8       1.362     4.01        0.50              1.433     3.81        0.48   yes
+     16       0.861     6.34        0.40              0.911     5.99        0.37   yes
+
+N = 2048 (output 2046 x 2046, average of 95 calls)
+Serial: 26.116 ms
+Threads   rows (ms)  speedup  efficiency   collapse(2) (ms)  speedup  efficiency   Correct?
+      1      22.758     1.15        1.15             26.326     0.99        0.99   yes
+      2      17.821     1.47        0.73             20.505     1.27        0.64   yes
+      4       9.895     2.64        0.66              9.537     2.74        0.68   yes
+      8       5.568     4.69        0.59              5.442     4.80        0.60   yes
+     16       4.137     6.31        0.39              4.274     6.11        0.38   yes
+
+N = 4096 (output 4094 x 4094, average of 23 calls)
+Serial: 95.478 ms
+Threads   rows (ms)  speedup  efficiency   collapse(2) (ms)  speedup  efficiency   Correct?
+      1      88.087     1.08        1.08             86.783     1.10        1.10   yes
+      2      52.565     1.82        0.91             59.000     1.62        0.81   yes
+      4      30.609     3.12        0.78             34.783     2.74        0.69   yes
+      8      18.217     5.24        0.66             20.043     4.76        0.60   yes
+     16      17.217     5.55        0.35             21.043     4.54        0.28   yes

@@ -1,0 +1,99 @@
+Task 2 - Loop Scheduling
+
+==================== Workload: uniform ====================
+
+N = 100000 (average of 50 runs)
+Serial: 12.72 ms
+Threads    static (ms)  S     E      dynamic,100 (ms)  S     E      guided (ms)  S     E     Correct?
+      1          14.22  0.89   0.89               13.40  0.95   0.95          13.00  0.98   0.98   yes
+      2           7.60  1.67   0.84                7.38  1.72   0.86           7.30  1.74   0.87   yes
+      4           4.32  2.94   0.74                3.72  3.42   0.85           3.72  3.42   0.85   yes
+      8           2.48  5.13   0.64                1.92  6.62   0.83           1.94  6.56   0.82   yes
+
+N = 1000000 (average of 5 runs)
+Serial: 143.80 ms
+Threads    static (ms)  S     E      dynamic,100 (ms)  S     E      guided (ms)  S     E     Correct?
+      1         153.40  0.94   0.94              142.00  1.01   1.01         137.40  1.05   1.05   yes
+      2          79.60  1.81   0.90               72.40  1.99   0.99          71.20  2.02   1.01   yes
+      4          40.60  3.54   0.89               36.20  3.97   0.99          36.00  3.99   1.00   yes
+      8          21.20  6.78   0.85               18.60  7.73   0.97          18.40  7.82   0.98   yes
+
+N = 10000000 (average of 1 runs)
+Serial: 1448.00 ms
+Threads    static (ms)  S     E      dynamic,100 (ms)  S     E      guided (ms)  S     E     Correct?
+      1        1618.00  0.89   0.89             1466.00  0.99   0.99        1447.00  1.00   1.00   yes
+      2         796.00  1.82   0.91              716.00  2.02   1.01         704.00  2.06   1.03   yes
+      4         398.00  3.64   0.91              364.00  3.98   0.99         355.00  4.08   1.02   yes
+      8         205.00  7.06   0.88              185.00  7.83   0.98         181.00  8.00   1.00   yes
+
+==================== Workload: periodic (i % 1000) ====================
+
+N = 100000 (average of 50 runs)
+Serial: 14.64 ms
+Threads    static (ms)  S     E      dynamic,100 (ms)  S     E      guided (ms)  S     E     Correct?
+      1          16.18  0.90   0.90               15.36  0.95   0.95          14.94  0.98   0.98   yes
+      2           8.44  1.73   0.87                7.54  1.94   0.97           7.76  1.89   0.94   yes
+      4           4.42  3.31   0.83                3.86  3.79   0.95           4.08  3.59   0.90   yes
+      8           2.72  5.38   0.67                2.00  7.32   0.91           1.98  7.39   0.92   yes
+
+N = 1000000 (average of 5 runs)
+Serial: 143.40 ms
+Threads    static (ms)  S     E      dynamic,100 (ms)  S     E      guided (ms)  S     E     Correct?
+      1         160.20  0.90   0.90              144.40  0.99   0.99         144.40  0.99   0.99   yes
+      2          82.20  1.74   0.87               73.20  1.96   0.98          74.40  1.93   0.96   yes
+      4          41.80  3.43   0.86               37.60  3.81   0.95          37.20  3.85   0.96   yes
+      8          22.00  6.52   0.81               19.00  7.55   0.94          18.80  7.63   0.95   yes
+
+N = 10000000 (average of 1 runs)
+Serial: 1477.00 ms
+Threads    static (ms)  S     E      dynamic,100 (ms)  S     E      guided (ms)  S     E     Correct?
+      1        1627.00  0.91   0.91             1515.00  0.97   0.97        1496.00  0.99   0.99   yes
+      2         813.00  1.82   0.91              747.00  1.98   0.99         735.00  2.01   1.00   yes
+      4         405.00  3.65   0.91              372.00  3.97   0.99         378.00  3.91   0.98   yes
+      8         213.00  6.93   0.87              193.00  7.65   0.96         186.00  7.94   0.99   yes
+
+==================== Workload: increasing (grows with i) ====================
+
+N = 100000 (average of 50 runs)
+Serial: 14.64 ms
+Threads    static (ms)  S     E      dynamic,100 (ms)  S     E      guided (ms)  S     E     Correct?
+      1          16.08  0.91   0.91               15.06  0.97   0.97          14.84  0.99   0.99   yes
+      2          12.66  1.16   0.58                7.56  1.94   0.97           7.54  1.94   0.97   yes
+      4           7.42  1.97   0.49                3.88  3.77   0.94           3.80  3.85   0.96   yes
+      8           4.02  3.64   0.46                2.02  7.25   0.91           1.98  7.39   0.92   yes
+
+N = 1000000 (average of 5 runs)
+Serial: 145.60 ms
+Threads    static (ms)  S     E      dynamic,100 (ms)  S     E      guided (ms)  S     E     Correct?
+      1         160.60  0.91   0.91              148.60  0.98   0.98         146.60  0.99   0.99   yes
+      2         125.40  1.16   0.58               76.20  1.91   0.96          74.20  1.96   0.98   yes
+      4          73.20  1.99   0.50               38.20  3.81   0.95          37.40  3.89   0.97   yes
+      8          39.80  3.66   0.46               19.80  7.35   0.92          19.00  7.66   0.96   yes
+
+N = 10000000 (average of 1 runs)
+Serial: 1444.00 ms
+Threads    static (ms)  S     E      dynamic,100 (ms)  S     E      guided (ms)  S     E     Correct?
+      1        1603.00  0.90   0.90             1496.00  0.97   0.97        1459.00  0.99   0.99   yes
+      2        1236.00  1.17   0.58              743.00  1.94   0.97         740.00  1.95   0.98   yes
+      4         721.00  2.00   0.50              381.00  3.79   0.95         373.00  3.87   0.97   yes
+      8         392.00  3.68   0.46              196.00  7.37   0.92         187.00  7.72   0.97   yes
+
+==================== Chunk size (N = 10^6, 8 threads) ====================
+
+Workload: uniform, serial 144.00 ms
+    chunk    static,chunk (ms)  speedup   dynamic,chunk (ms)  speedup   guided,chunk (ms)  speedup   Correct?
+        1                36.00     4.00                33.20     4.34               18.80     7.66   yes
+       10                20.00     7.20                20.00     7.20               18.20     7.91   yes
+      100                18.80     7.66                18.60     7.74               18.20     7.91   yes
+     1000                18.40     7.83                18.20     7.91               18.20     7.91   yes
+    10000                19.20     7.50                19.00     7.58               18.80     7.66   yes
+   100000                28.00     5.14                28.60     5.03               28.00     5.14   yes
+
+Workload: increasing (grows with i), serial 145.00 ms
+    chunk    static,chunk (ms)  speedup   dynamic,chunk (ms)  speedup   guided,chunk (ms)  speedup   Correct?
+        1                33.00     4.39                34.20     4.24               19.80     7.32   yes
+       10                21.80     6.65                21.20     6.84               19.80     7.32   yes
+      100                21.20     6.84                20.80     6.97               20.20     7.18   yes
+     1000                20.00     7.25                20.00     7.25               19.80     7.32   yes
+    10000                20.60     7.04                20.40     7.11               20.60     7.04   yes
+   100000                33.60     4.32                33.60     4.32               30.40     4.77   yes

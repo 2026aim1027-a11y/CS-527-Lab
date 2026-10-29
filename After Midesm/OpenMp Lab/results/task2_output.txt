@@ -1,0 +1,32 @@
+Task 2 - Sum of Array Elements
+
+Naive parallel sum (no reduction), N = 10000000, 8 threads
+Correct answer = 50000005000000
+Run  1: sum =  11718750625000   WRONG
+Run  2: sum =   7031250625000   WRONG
+Run  3: sum =   7031250625000   WRONG
+Run  4: sum =  11718750625000   WRONG
+Run  5: sum =  10156250625000   WRONG
+Run  6: sum =  10156250625000   WRONG
+Run  7: sum =    781250625000   WRONG
+Run  8: sum =   8593750625000   WRONG
+Run  9: sum =   3906250625000   WRONG
+Run 10: sum =   2343750625000   WRONG
+
+N = 10000000 (average of 100 calls), serial sum = 50000005000000, N(N+1)/2 = 50000005000000
+Threads    reduction (ms)    Speedup    Matches serial?    critical (ms)
+ serial            3.8800       1.00                  -                -
+      1            3.8800       1.00    yes (every run)            44.00 (correct)
+      2            2.5000       1.55    yes (every run)            97.00 (correct)
+      4            1.8700       2.07    yes (every run)           101.00 (correct)
+      8            2.0800       1.87    yes (every run)           190.00 (correct)
+     16            2.5200       1.54    yes (every run)           241.00 (correct)
+
+N = 100000000 (average of 10 calls), serial sum = 5000000050000000, N(N+1)/2 = 5000000050000000
+Threads    reduction (ms)    Speedup    Matches serial?    critical (ms)
+ serial           42.8000       1.00                  -                -
+      1           45.6000       0.94    yes (every run)                -
+      2           26.8000       1.60    yes (every run)                -
+      4           20.2000       2.12    yes (every run)                -
+      8           21.6000       1.98    yes (every run)                -
+     16           25.3000       1.69    yes (every run)                -

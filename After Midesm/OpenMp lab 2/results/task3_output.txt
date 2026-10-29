@@ -1,0 +1,32 @@
+Task 3 - Histogram (values 0..9)
+
+N = 10000000 (average of 100 calls)
+Serial histogram: 1000853 1000075 1000766 1000584 999659 999156 999623 1001158 998946 999180
+Sum of counts = 10000000 (= N, ok)
+Serial time = 5.390 ms
+
+Naive parallel version, 8 threads, 5 runs:
+Run 1: bin 0 =    511816 (correct 1000853), sum of counts =   5010987   WRONG
+Run 2: bin 0 =    505696 (correct 1000853), sum of counts =   4937221   WRONG
+Run 3: bin 0 =    501585 (correct 1000853), sum of counts =   4895034   WRONG
+Run 4: bin 0 =    505468 (correct 1000853), sum of counts =   4941506   WRONG
+Run 5: bin 0 =    498089 (correct 1000853), sum of counts =   4858945   WRONG
+
+Threads   reduction (ms)  speedup   local (ms)  speedup   atomic (ms)   critical (ms)   Correct?
+      1            4.390     1.23        5.460     0.99          21.0            43.0   yes
+      2            2.460     2.19        3.130     1.72          96.0            95.0   yes
+      4            1.490     3.62        1.810     2.98         120.0           173.0   yes
+      8            1.360     3.96        1.860     2.90         112.0           237.0   yes
+     16            1.240     4.35        1.300     4.15         109.0           286.0   yes
+
+N = 100000000 (average of 10 calls)
+Serial histogram: 9999218 10005508 10004845 9996756 9998563 10002967 9997474 10000673 9999871 9994125
+Sum of counts = 100000000 (= N, ok)
+Serial time = 61.900 ms
+
+Threads   reduction (ms)  speedup   local (ms)  speedup   atomic (ms)   critical (ms)   Correct?
+      1           46.600     1.33       60.800     1.02         218.0               -   yes
+      2           34.000     1.82       42.800     1.45         639.0               -   yes
+      4           17.900     3.46       27.700     2.23        1155.0               -   yes
+      8           11.000     5.63       14.500     4.27        1113.0               -   yes
+     16           12.800     4.84       13.200     4.69        1091.0               -   yes

@@ -1,0 +1,7 @@
+Cost of one barrier (average of 20000)
+Threads   barrier (us)   empty omp for (us)
+      1           0.00                 0.05
+      2          13.40                13.15
+      4          26.30                25.90
+      8          50.45                65.70
+     16         137.60               141.60

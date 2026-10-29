@@ -1,0 +1,19 @@
+Task 4 - Matrix Addition
+
+N = 8 (average of 100000 calls, time in microseconds)
+Threads    outer only (us)    Speedup    collapse(2) (us)    Speedup    Correct?
+ serial              0.020      1.000                   -          -    -
+      1              4.300      0.005               4.260      0.005    yes
+      2             20.180      0.001              20.500      0.001    yes
+      4             28.250      0.001              28.320      0.001    yes
+      8             41.090      0.000              40.730      0.000    yes
+     16             67.220      0.000              66.660      0.000    yes
+
+N = 4096 (average of 10 calls, time in microseconds)
+Threads    outer only (us)    Speedup    collapse(2) (us)    Speedup    Correct?
+ serial          22500.014      1.000                   -          -    -
+      1          16400.003      1.372           17899.990      1.257    yes
+      2          16100.001      1.398           16700.006      1.347    yes
+      4          18400.002      1.223           18099.999      1.243    yes
+      8          19900.012      1.131           20599.985      1.092    yes
+     16          21199.989      1.061           21300.006      1.056    yes

@@ -1,0 +1,37 @@
+Task 1 - Vector Addition
+
+N = 100000 (average of 10000 calls)
+Threads    Time (ms)    Speedup    Same as serial?
+ serial       0.0531       1.00    -
+      1       0.0418       1.27    yes
+      2       0.0550       0.97    yes
+      4       0.0477       1.11    yes
+      8       0.0582       0.91    yes
+     16       0.0958       0.55    yes
+
+N = 1000000 (average of 1000 calls)
+Threads    Time (ms)    Speedup    Same as serial?
+ serial       1.5350       1.00    -
+      1       1.1970       1.28    yes
+      2       0.8960       1.71    yes
+      4       0.8160       1.88    yes
+      8       0.7930       1.94    yes
+     16       0.7660       2.00    yes
+
+N = 10000000 (average of 100 calls)
+Threads    Time (ms)    Speedup    Same as serial?
+ serial      13.5500       1.00    -
+      1      14.1300       0.96    yes
+      2      12.6900       1.07    yes
+      4      10.9200       1.24    yes
+      8      12.2500       1.11    yes
+     16      12.6200       1.07    yes
+
+N = 100000000 (average of 10 calls)
+Threads    Time (ms)    Speedup    Same as serial?
+ serial     134.5000       1.00    -
+      1     133.2000       1.01    yes
+      2     105.4000       1.28    yes
+      4     118.1000       1.14    yes
+      8     119.2000       1.13    yes
+     16     124.2000       1.08    yes

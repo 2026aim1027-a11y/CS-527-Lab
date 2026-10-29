@@ -1,0 +1,50 @@
+Task 5 - Matrix Multiplication
+Efficiency = speedup / number of threads
+
+N = 256 (average of 20 calls), loop order i,j,k, serial time = 11.95 ms
+Threads    i loop (ms)    Speedup    Efficiency    collapse(2) (ms)    Speedup    Efficiency    Correct?
+      1          11.95       1.00          1.00               12.15       0.98          0.98    yes
+      2           6.75       1.77          0.89                6.50       1.84          0.92    yes
+      4           3.90       3.06          0.77                3.55       3.37          0.84    yes
+      8           2.40       4.98          0.62                2.95       4.05          0.51    yes
+     16           2.15       5.56          0.35                2.15       5.56          0.35    yes
+
+N = 256, loop order i,k,j (bonus), serial time = 11.65 ms, same result as i,j,k: yes
+Threads    i loop (ms)    Speedup    Efficiency    Correct?
+      1          12.55       0.93          0.93    yes
+      2           5.65       2.06          1.03    yes
+      4           2.85       4.09          1.02    yes
+      8           2.10       5.55          0.69    yes
+     16           1.45       8.03          0.50    yes
+
+N = 512 (average of 5 calls), loop order i,j,k, serial time = 107.00 ms
+Threads    i loop (ms)    Speedup    Efficiency    collapse(2) (ms)    Speedup    Efficiency    Correct?
+      1         100.00       1.07          1.07              101.40       1.06          1.06    yes
+      2          50.80       2.11          1.05               51.40       2.08          1.04    yes
+      4          26.20       4.08          1.02               27.00       3.96          0.99    yes
+      8          18.00       5.94          0.74               18.20       5.88          0.73    yes
+     16          13.40       7.99          0.50               14.40       7.43          0.46    yes
+
+N = 512, loop order i,k,j (bonus), serial time = 59.00 ms, same result as i,j,k: yes
+Threads    i loop (ms)    Speedup    Efficiency    Correct?
+      1          56.00       1.05          1.05    yes
+      2          28.80       2.05          1.02    yes
+      4          16.80       3.51          0.88    yes
+      8          10.60       5.57          0.70    yes
+     16           9.20       6.41          0.40    yes
+
+N = 1024 (average of 2 calls), loop order i,j,k, serial time = 2032.00 ms
+Threads    i loop (ms)    Speedup    Efficiency    collapse(2) (ms)    Speedup    Efficiency    Correct?
+      1        1825.50       1.11          1.11             2225.00       0.91          0.91    yes
+      2         998.50       2.04          1.02             1017.50       2.00          1.00    yes
+      4         495.50       4.10          1.03              479.00       4.24          1.06    yes
+      8         344.00       5.91          0.74              353.50       5.75          0.72    yes
+     16         328.00       6.20          0.39              351.50       5.78          0.36    yes
+
+N = 1024, loop order i,k,j (bonus), serial time = 503.00 ms, same result as i,j,k: yes
+Threads    i loop (ms)    Speedup    Efficiency    Correct?
+      1         529.50       0.95          0.95    yes
+      2         240.00       2.10          1.05    yes
+      4         126.00       3.99          1.00    yes
+      8          96.50       5.21          0.65    yes
+     16          90.00       5.59          0.35    yes

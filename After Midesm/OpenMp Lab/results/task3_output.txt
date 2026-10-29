@@ -1,0 +1,20 @@
+Task 3 - Maximum and Minimum of an Array
+Each time is for finding the max AND the min (one call each).
+
+N = 10000000 (average of 100 calls)
+Serial: max = 99999 at index 3333333, min = -5 at index 6666666, time = 10.890 ms
+Threads    reduction (ms)    manual (ms)    manual speedup    critical (ms)    Correct?
+      1            10.540         10.690              1.02            94.00    yes
+      2             5.720          5.850              1.86           208.00    yes
+      4             3.100          3.310              3.29           212.00    yes
+      8             1.870          2.770              3.93           338.00    yes
+     16             2.330          2.810              3.88           471.00    yes
+
+N = 100000000 (average of 10 calls)
+Serial: max = 99999 at index 33333333, min = -5 at index 66666666, time = 105.800 ms
+Threads    reduction (ms)    manual (ms)    manual speedup    critical (ms)    Correct?
+      1           105.400        106.100              1.00                -    yes
+      2            54.300         54.900              1.93                -    yes
+      4            28.600         28.100              3.77                -    yes
+      8            21.400         22.300              4.74                -    yes
+     16            27.000         26.900              3.93                -    yes

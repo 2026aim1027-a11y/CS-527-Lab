@@ -1,0 +1,63 @@
+Task 1 - Parallel Merge Sort with OpenMP Tasks
+
+N = 100000, cutoff = 2048 (126 tasks per sort, average of 200 sorts)
+Serial: 8.030 ms, output sorted: yes
+Threads   time (ms)   speedup   efficiency   sorted and == serial?
+      1       7.965      1.01         1.01   yes
+      2       4.790      1.68         0.84   yes
+      4       3.395      2.37         0.59   yes
+      8       2.400      3.35         0.42   yes
+
+N = 1000000, cutoff = 2048 (1022 tasks per sort, average of 20 sorts)
+Serial: 99.150 ms, output sorted: yes
+Threads   time (ms)   speedup   efficiency   sorted and == serial?
+      1     100.200      0.99         0.99   yes
+      2      55.250      1.79         0.90   yes
+      4      37.350      2.65         0.66   yes
+      8      24.700      4.01         0.50   yes
+
+N = 10000000, cutoff = 2048 (16382 tasks per sort, average of 3 sorts)
+Serial: 1195.667 ms, output sorted: yes
+Threads   time (ms)   speedup   efficiency   sorted and == serial?
+      1    1195.333      1.00         1.00   yes
+      2     616.333      1.94         0.97   yes
+      4     422.333      2.83         0.71   yes
+      8     266.000      4.49         0.56   yes
+
+===== Small arrays (cutoff = 2048), time in microseconds =====
+
+N = 1000 (0 tasks per sort, average of 20000 sorts)
+Serial: 21.3 us
+Threads   time (us)   speedup   sorted and == serial?
+      1        28.6      0.75   yes
+      2        50.4      0.42   yes
+      4        55.5      0.38   yes
+      8        70.8      0.30   yes
+
+N = 10000 (14 tasks per sort, average of 2000 sorts)
+Serial: 657.0 us
+Threads   time (us)   speedup   sorted and == serial?
+      1       675.5      0.97   yes
+      2       450.5      1.46   yes
+      4       360.5      1.82   yes
+      8       266.0      2.47   yes
+
+N = 50000 (62 tasks per sort, average of 400 sorts)
+Serial: 3922.5 us
+Threads   time (us)   speedup   sorted and == serial?
+      1      3892.5      1.01   yes
+      2      2305.0      1.70   yes
+      4      1725.0      2.27   yes
+      8      1227.5      3.20   yes
+
+===== Effect of the cutoff (N = 10^6) =====
+Serial: 109.20 ms (average of 10 sorts)
+   cutoff        tasks   1 thread (ms)   8 threads (ms)   speedup (8 thr)   correct?
+        1      1999998          374.67          1170.00              0.09   yes
+       16       131070          129.67           102.00              1.07   yes
+      256         8190          113.60            30.30              3.60   yes
+     2048         1022          109.40            27.10              4.03   yes
+    16384          126          109.30            28.70              3.80   yes
+   131072           14          108.80            25.00              4.37   yes
+   524288            2          114.50            61.10              1.79   yes
+  1000000            0          112.30           113.90              0.96   yes
