@@ -1,0 +1,13 @@
+g++ -fopenmp -Wall -O2 session2_task5.cpp -o session2_task5
+
+export OMP_NUM_THREADS=1
+./task1 100000000
+
+export OMP_NUM_THREADS=2
+./task1 100000000
+
+export OMP_NUM_THREADS=4
+./task1 100000000
+
+export OMP_NUM_THREADS=8
+./task1 100000000
